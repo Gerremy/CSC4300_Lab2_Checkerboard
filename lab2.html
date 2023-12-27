@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkerboard</title>
+
+
+<script>
+    var canvas;    // DOM object corresponding to the canvas
+    var graphics;  // 2D graphics context for drawing on the canvas
+
+    var tileSize = 20;  // size of tile used to create the pattern
+
+    // TODO: replace the code below with code that returns one color 
+    // if x is even and another if x is odd (then later a checkerboard)
+    function pixelColor(x, y) {
+        var unit = 2 * tileSize;
+
+        if (x%unit < tileSize) {
+            return "blue";
+        } else if (y%unit < tileSize) {
+            return "blue";
+        } else {
+            return "white";
+        }
+
+
+        /*
+        if (x%2 == 0 && y%2 != 0) {
+            return "blue";
+        } else {
+            return "white";
+        }
+        */
+    }
+    
+    function draw() {
+        // draw on the canvas, using the graphics context
+
+        // TODO: put the code below inside a double for
+        // loop over x and y, up to canvas.width and canvas.height
+
+        for (var i = 0; i <= canvas.width; i = i + 1) {
+            for (var j = 0; j <= canvas.height; j = j + 1) {
+                var color = pixelColor(i,j);
+                graphics.fillStyle = color;
+                graphics.fillRect(i,j,1,1); // color a single pixel
+            }
+        }
+    }
+
+    function main() {
+        canvas = document.getElementById("myCanvas");
+        if(!canvas) {    
+            console.log("Failed to retrieve the canvas");
+            return false;
+        }
+        graphics = canvas.getContext("2d");
+        if(!graphics) {    
+            console.log("Failed to retrieve the 2D context");
+            return false;
+        }
+        draw(); // draw something on the canvas 
+    }
+</script>
+
+
+</head>
+<body onload="main()">
+    <canvas id="myCanvas" width="420" height="300">Canvas not supported</canvas>
+</body>
+</html>
